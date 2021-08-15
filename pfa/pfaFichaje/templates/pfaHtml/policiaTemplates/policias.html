@@ -1,0 +1,64 @@
+{% extends 'pfaHtml/base.html'%}
+
+{% block titulo %} Bienvenido a la PFA {% endblock %}
+{% block contenido %}
+	
+	<!-- Boton añadir -->
+
+	<input type="button" value="Nuevo policia" onclick="javascript:window.open(
+    	'listado/nuevo_policia',
+    	'',
+    	'width=300,height=300,left=350,top=50,toolbar=yes'
+    );" />
+
+    <!-- Barra de busqueda -->
+
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12 search">
+    			<form method="get">
+    				<div class="input-group col-md-12">
+    					<input type="text" class= "form-control" placeholder="Buscar..." name="buscar">
+    					<span class="input-group-list">
+    						<i class="icon icon-search"></i>
+    						<button type="submit" class="boton btn-success">Buscar</button>
+    					</span>
+    				</div>
+    			</form>
+    			
+    		</div>
+    	</div>
+    </div>
+
+    <!-- Tabla de oficiales con botonera B/M -->
+
+    <div>
+	    <table class="tabla_separada" border="2">	
+	    	<tbody>
+	    		<tr>
+		    		<th> Nombre  apellido </th>
+		    		<th> Rango </th>
+		    		<th> Modificar </th>
+	    		</tr>
+				
+				{% for oficial in pfa|slice:":10" %}
+			    <tr>
+
+			    	<td>{{ oficial.nombre }} {{ oficial.apellido }}</td>
+			    	<td>{{ oficial.rango }}</td>
+			    	<td>
+			    		<a href="{% url 'editar_policia' pk=oficial.pk %}"><button type="button" class="boton_edit"> Editar </button> </a>
+
+			    		<a href="{% url 'borrar_policia' pk=oficial.pk %}"><button type="button-borrar" class="boton_delete" > Borrar </button></a>
+			    	</td>	
+			   	
+			    </tr>
+			    {% endfor %}	
+			       
+			    
+	    	</tbody>
+	    </table>
+    </div>
+    
+
+{% endblock %}

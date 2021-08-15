@@ -1,0 +1,55 @@
+ul.menu {
+  list-style-type: none;
+  text-align: center;
+  text-decoration-color: black;
+  font: 150% bold Helvetica;
+  margin: 5px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #12b0f9;
+}
+
+li.Derecho {
+  float: right;
+  margin: 5px
+}
+
+li.Izquierdo {
+  float: left;
+  margin: 5px
+}
+
+table.tabla_separada{
+  border-collapse: separate;
+  margin: auto;
+  text-align: center;
+
+}
+
+.Escudo{
+  width: 150px;
+  height: 150px;
+}
+
+.boton_edit{
+  text-decoration: none;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+  color: #000000;
+  background-color: #f9bd1d;
+  border-radius: 6px;
+  border: 2px solid #fe9a01;
+ }
+
+.boton_delete{
+  text-decoration: none;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+  color: #000000;
+  background-color: #f74b19;
+  border-radius: 6px;
+  border: 2px solid #fb0303;
+ } 
+

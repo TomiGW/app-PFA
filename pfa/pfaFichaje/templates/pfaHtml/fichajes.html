@@ -1,0 +1,24 @@
+{% extends 'pfaHtml/base.html'%}
+
+{% block titulo %} Bienvenido a la PFA {% endblock %}
+{% block contenido %}
+	
+	<form method="get">
+		{{filter.form.as_p}}
+		<button type="submit"> Buscar</button>
+	</form>
+
+    <ul>
+
+    {% for fichaje in filter.qs %}
+
+ 
+        <a href="{% url 'editarFichaje' pk=fichaje.pk%}" ><li>{{ fichaje.policia.nombre }}  {{fichaje.horasTotales}} {{fichaje.estado}} 
+        </a> Dia del fichaje {{fichaje.fecha_Entrada}}</li>
+
+ 
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}

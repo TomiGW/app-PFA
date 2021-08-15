@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+	<head>
+		<title>{% block titulo %} {% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	</head>
+	<body>
+		<ul class="menu">
+			{% if user.is_authenticated%} 
+				<!--<li class="Derecho"> <a href="Cerrar_Sesion"> Cerrar Sesion  </a></li> -->
+				<li class="Derecho"> Hola {{user.get_username}}  </li> 
+				<!--<li class="Izquierdo"> <a href="{% url 'home'%}"> Policias </a> </li> -->
+				<li class="Izquierdo"> <a href="{% url 'listaPFA'%}"> Oficiales </a> </li>
+				<li class="Izquierdo"> <a href="{% url 'informacion'%}"> Informacion </a> </li>
+
+			{% else %}
+				<img class= "Escudo" src="/static/imagenes/Escudo_PFA.png">
+				<li class="Derecho"> <a href="{% url 'home'%}"> Iniciar Sesion  </li>
+			{% endif %}
+			<li class="Izquierdo"> <a href="{% url 'home'%}"> Inicio </a> </li>
+			
+			
+		
+		
+		</ul>
+		{% block contenido%}
+		{% endblock%}
+	</body>
+</html>

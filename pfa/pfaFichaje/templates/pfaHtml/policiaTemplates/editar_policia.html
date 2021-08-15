@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html>
+    <head>
+        <title> Editar policia </title>
+    </head>
+    <body>
+        <h2>Editar Policia</h2>
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Guardar</button>
+        </form>
+
+        {% for message in messages %}
+            <div class="alert alert-info">
+                <a class="close" href="#" data-dismiss="alert"></a>
+                {{message}} 
+            </div>
+        {%endfor%}
+
+    </body>
+</html>	
+    

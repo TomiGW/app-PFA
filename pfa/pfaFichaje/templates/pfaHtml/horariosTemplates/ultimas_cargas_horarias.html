@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html>
+
+	<head>
+		<title> Ultimas cargas horarias </title>
+		<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	</head>
+
+	<body>
+
+		<script>
+	    window.onunload = refreshParent;
+	    function refreshParent() {
+	        window.opener.location.reload();
+	    }
+		</script>
+
+		    <table class="tabla_separada" border="2">
+	    	
+	    	<tbody>
+	    		<tr>
+		    		<th> Nombre Apellido </th>
+		    		<th> Rango </th>
+		    		<th> Horas totales </th>
+		    		<th> Monto </th>
+		    		<th> Dias en la PFA </th>
+		    		<th> Modificar </th>
+	    		</tr>
+
+			    {% for carga in carga|slice:":15" %}
+			    <tr>
+			    	<td>{{ carga.policia.nombre }} {{ carga.policia.apellido }}</td>
+			    	<td>{{ carga.policia.rango }}</td>
+			    	<td>{{carga.horas_totales}} </td>
+			    	<td> $ {{carga.pagoPorHora}}</td>
+			    	<td> {{carga.policia.dias_PFA}}</td>
+			    	<td>
+
+			    		<a href="{% url 'editar_hora' pk=carga.pk %}">
+			    			<button type="button" class="boton_edit"> Editar </button>
+			    		</a> 
+
+			    		<a href="{% url 'borrar_hora' pk=carga.pk %}">
+			    			<button type="button-borrar" class="boton_delete" > Borrar </button>
+			    		</a> 
+			    	</td>
+			    </tr>
+			       
+			    {% endfor %}
+	    	</tbody>
+	    </table>
+
+	</body>
+</html>
+    

@@ -1,0 +1,69 @@
+{% extends 'pfaHtml/base.html'%}
+
+{% block titulo %} Bienvenido a la PFA{% endblock %}
+{% block contenido %}
+	<a href="{% url 'borrar_info' %}"> <button> Borrar toda la informacion</button></a>
+	
+    <input type="button" value="Ver historial de horas" onclick="javascript:window.open(
+    	'Historial_Horas',
+    	'',
+    	'width=800,height=900,left=350,top=50,toolbar=yes'
+    );" />
+
+    <input type="button" value="Nueva carga horaria" onclick="javascript:window.open(
+    	'Informacion/nueva_carga_horaria',
+    	'',
+    	'width=300,height=300,left=350,top=50,toolbar=yes'
+    );" />
+    <!-- BARRA DE BUSQUEDA A IMPLEMENTAR
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12 search">
+    			<form method="get">
+    				<div class="input-group col-md-12">
+    					<input type="text" class= "form-control" placeholder="Buscar..." name="buscar">
+    					<span class="input-group-list">
+    						<i class="icon icon-search"></i>
+    						<button type="submit" class="boton btn-success">Buscar</button>
+    					</span>
+    				</div>
+    			</form>
+    			
+    		</div>
+    	</div>
+    </div>
+	-->
+    <div>
+
+
+	    <table class="tabla_separada" border="2">
+	    	
+	    	<tbody>
+	    		<tr>
+		    		<th> Nombre apellido </th>
+		    		<th> Rango </th>
+		    		<th> Horas Totales </th>
+		    		<th> Monto </th>
+		    		<th> Dias en la PFA </th>
+		    		<th> Borrar </th>
+	    		</tr>
+				
+				{% for f in final %}
+			    <tr>
+
+			    	<td>{{ f.0.nombre }} {{ f.0.apellido }}</td>
+			    	<td>{{ f.0.rango }}</td>
+			    	<td> {{f.2.0}}:{{f.2.1}} </td>
+			    	<td> $ {{f.1}}</td>
+			    	<td>{{f.0.dias_PFA}}</td>
+			    	<td> <a href="{% url 'borrar' pk=f.0.pk %}"> <button type="button-borrar" class="boton_delete"> borrar </button> </a></td>
+			   	
+			    </tr>
+			    {% endfor %}	
+			       			    
+	    	</tbody>
+	    </table>
+    </div>
+    
+
+{% endblock %}
