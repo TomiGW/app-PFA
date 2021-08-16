@@ -1,0 +1,15 @@
+.tabla_separada{
+  	border-collapse: separate;
+  	margin: auto;
+  	text-align: center;
+}
+
+.botonera{
+	float: left;
+	display: grid;
+}
+
+.elementos-botonera{
+	margin: 15px;
+}
+

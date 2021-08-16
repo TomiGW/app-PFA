@@ -4,25 +4,20 @@
 	<head>
 		<title>{% block titulo %} {% endblock %}</title>
 		<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		{% block styles %}
+		{% endblock %}
 	</head>
 	<body>
 		<ul class="menu">
-			{% if user.is_authenticated%} 
-				<!--<li class="Derecho"> <a href="Cerrar_Sesion"> Cerrar Sesion  </a></li> -->
-				<li class="Derecho"> Hola {{user.get_username}}  </li> 
-				<!--<li class="Izquierdo"> <a href="{% url 'home'%}"> Policias </a> </li> -->
-				<li class="Izquierdo"> <a href="{% url 'listaPFA'%}"> Oficiales </a> </li>
-				<li class="Izquierdo"> <a href="{% url 'informacion'%}"> Informacion </a> </li>
-
-			{% else %}
-				<img class= "Escudo" src="/static/imagenes/Escudo_PFA.png">
-				<li class="Derecho"> <a href="{% url 'home'%}"> Iniciar Sesion  </li>
-			{% endif %}
+			
+			<a href="{% url 'home'%}" class= "Escudo" ><img style="width: 123px;height: 116px;" src="/static/imagenes/Escudo_PFA.png"></a>
+			
+			<li class="Izquierdo"> <a href="{% url 'listaPFA'%}"> Oficiales </a> </li>
+			<li class="Izquierdo"> <a href="{% url 'informacion'%}"> Informacion </a> </li>				
 			<li class="Izquierdo"> <a href="{% url 'home'%}"> Inicio </a> </li>
-			
-			
-		
-		
+
 		</ul>
 		{% block contenido%}
 		{% endblock%}
