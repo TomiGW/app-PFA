@@ -51,8 +51,6 @@ def borrar_policia(request, pk): # Vista para borrar un policia
 	oficial.delete()
 	return redirect('listaPFA')
 
-
-
 # VISTAS PARA LAS CARGAS DE HORAS (A/B/M)
 def cargaHoraria(request): # Muestra las horas cargadas TOTALES de cada oficial
 	carga= CargaHorarias.objects.order_by("policia") 
@@ -73,7 +71,7 @@ def cargaHoraria(request): # Muestra las horas cargadas TOTALES de cada oficial
 
 		elif x.policia not in oficiales: # Verifica si la carga del oficial se encuentra en la lista correspondiente
 			oficiales.append(x.policia)
-			montos.append("{0:.2f}".format(resultado))
+			montos.append('{:,.2f}'.format(resultado).replace(",", "@").replace(".", ",").replace("@", "."))
 			tiempo.append(horasT) #Se guardan en las listas que corresponden, el salario final y las horas totales del oficial anterior.
 			resultado = 0
 			horasT = (00, 00)
@@ -82,7 +80,7 @@ def cargaHoraria(request): # Muestra las horas cargadas TOTALES de cada oficial
 			resultado= resultado + salario 
 			horasT = (horas.hour + horasT[0], horas.minute + horasT[1])
 
-	montos.append("{0:.2f}".format(resultado))
+	montos.append('{:,.2f}'.format(resultado).replace(",", "@").replace(".", ",").replace("@", "."))
 	tiempo.append(horasT)
 
 	final = zip(oficiales,montos,tiempo)
