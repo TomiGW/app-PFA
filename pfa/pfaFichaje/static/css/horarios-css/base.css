@@ -13,3 +13,36 @@
 	margin: 15px;
 }
 
+.edit{
+  padding: 10px;
+  font-size: 20px;
+  color: #f9bd1d;
+  border-radius: 6px;
+  border: 3px solid #f9bd1d;
+}
+
+.delete{
+  padding: 10px;
+  font-size: 20px;
+  color: #f74b19;
+  border: 3px solid #f74b19;
+  border-radius: 6px;
+} 
+
+.edit:hover{
+  padding: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #f9bd1d;
+  border-radius: 6px;
+  border: 3px solid #f9bd1d;
+}
+
+.delete:hover{
+  padding: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #f74b19;
+  border-radius: 6px;
+  border: 3px solid #f74b19;
+}
