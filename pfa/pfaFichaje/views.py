@@ -13,9 +13,9 @@ def home(request):
 def listado_policias(request):
 	queryset = request.GET.get("buscar") # Obtiene el resultado de la barra de busqueda
 	if queryset:
-		pfa = Policias.objects.order_by("-rango").filter(Q(nombre__iexact= queryset) | Q(apellido__iexact= queryset)).distinct() #Crea la lista a partir de la barra de busqueda
+		pfa = Policias.objects.order_by("-rango", "nombre").filter(Q(nombre__iexact= queryset) | Q(apellido__iexact= queryset)).distinct() #Crea la lista a partir de la barra de busqueda
 	else:
-		pfa = Policias.objects.order_by("-rango") #Si no se busco nada, se crea la lista con todos lo policias existentes
+		pfa = Policias.objects.order_by("-rango", "nombre") #Si no se busco nada, se crea la lista con todos lo policias existentes
 	
 
 	return render(request, 'pfaHtml/policiaTemplates/policias.html', {'pfa': pfa})
@@ -53,7 +53,11 @@ def borrar_policia(request, pk): # Vista para borrar un policia
 
 # VISTAS PARA LAS CARGAS DE HORAS (A/B/M)
 def cargaHoraria(request): # Muestra las horas cargadas TOTALES de cada oficial
-	carga= CargaHorarias.objects.order_by("policia") 
+	queryset = request.GET.get("fecha")
+	if queryset:
+		carga= CargaHorarias.objects.order_by("policia").filter(Q(fecha_Carga__iexact=queryset))
+	else:
+		carga= CargaHorarias.objects.order_by("policia") 
 	# Se crean 3 listas para guardar los datos que se necesitan
 	oficiales=[]
 	montos = []
@@ -89,7 +93,7 @@ def cargaHoraria(request): # Muestra las horas cargadas TOTALES de cada oficial
 
 
 def borrar_informacion(request, pk):  #Borrar todas las cargas de un oficial en particular
-	filtro = CargaHorarias.objects.filter(policia_id=pk) #La lista generada son apartir del oficial indicado
+	filtro= CargaHorarias.objects.filter(policia_id=pk)
 	for e in filtro: 
 		e.delete() # Se borran cada uno de las cargar del oficial
 	return redirect('informacion')
@@ -100,7 +104,11 @@ def borrar_toda_informacion(request): #Borra todas las cargas de horas que se ha
 	return redirect('informacion')
 
 def historial_horas(request): # Muestra el historial de cargas, en el html solo se muestran las ultimas 15
-	carga= CargaHorarias.objects.all()
+	queryset = request.GET.get("fecha")
+	if queryset:
+		carga= CargaHorarias.objects.order_by("fecha_Carga").filter(Q(fecha_Carga__iexact=queryset))
+	else:
+		carga= CargaHorarias.objects.order_by("fecha_Carga")
 	return render(request, 'pfaHtml/horariosTemplates/ultimas_cargas_horarias.html', {'carga': carga})
 
 def nueva_cargaHoraria(request): # Añade una nueva carga de horas

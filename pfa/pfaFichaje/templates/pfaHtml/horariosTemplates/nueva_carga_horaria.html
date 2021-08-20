@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+{%load static%}
 <html>
     <head>
         <title> Nueva carga horaria </title>
+        <link rel="stylesheet" href="{% static 'css/editar.css' %}">
+        
     </head>
     <body>
             <script>
@@ -11,21 +14,26 @@
         }
         </script>
 
+        <ul class="menu">
+            <img class="Escudo" style="width: 123px;height: 116px;" src="/static/imagenes/Escudo_PFA.png">
+            <li class="Izquierdo">Complete los datos correspondientes: </li>
+        </ul>
         
-        <h2>Editar Hora</h2>
-        <form method="POST" class="post-form">
-            {% csrf_token %}
-            {{ form_horario.as_p }}
-            <button type="submit" class="save btn btn-default">Guardar</button>
-        </form>
+        <div class="centerdiv1">
+            <h2>Editar Hora</h2>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form_horario.as_p }}
+                <button type="submit" class="botones">Guardar</button>
+            </form>
 
-        {% for message in messages %}
-            <div class="alert alert-info">
-                <a class="close" href="#" data-dismiss="alert"></a>
-                {{message}} 
-            </div>
-        {%endfor%}
-
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    <a class="close" href="#" data-dismiss="alert"></a>
+                    {{message}} 
+                </div>
+            {%endfor%}
+        </div>    
 
     </body>
 </html>

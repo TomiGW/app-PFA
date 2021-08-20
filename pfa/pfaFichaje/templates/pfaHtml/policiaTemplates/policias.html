@@ -3,7 +3,11 @@
 
 {% block titulo %} Bienvenido a la PFA {% endblock %}
 
-{% block styles %} <link rel="stylesheet" href="{% static 'css/policia-css/base.css' %}"> {% endblock %}
+{% block styles %} 
+	<link rel="stylesheet" href="{% static 'css/policia-css/base.css' %}"> 
+
+
+{% endblock %}
 {% block contenido %}
 	
 	
@@ -24,11 +28,7 @@
     
 
 		<!-- Boton añadir -->
-		<input type="button" value="Añadir un nuevo policia" class="añadir-policia" onclick="javascript:window.open(
-	    	'listado/nuevo_policia',
-	    	'',
-	    	'width=300,height=300,left=350,top=50,toolbar=yes'
-	    );" />
+		<input type="button" value="Añadir un nuevo policia" class="añadir-policia" onclick="return abrirVentana('{%url 'nuevo_policia'%}', 'width=719,height=625,left=350,top=50,toolbar=yes');" />
 
 	</div>
 
@@ -49,11 +49,10 @@
 			    	<td>{{ oficial.nombre }} {{ oficial.apellido }}</td>
 			    	<td>{{ oficial.rango }}</td>
 			    	<td>
-			    		<a href="{% url 'editar_policia' pk=oficial.pk %}"><i class="fas fa-edit edit"></i></a>
-
-			    		<a href="{% url 'borrar_policia' pk=oficial.pk %}">
-			    			<i class="fas fa-trash-alt delete"></i>
-			    		</a>
+			    		<i class="fas fa-edit edit" onclick= "return abrirVentana('{%url 'editar_policia' pk=oficial.pk %}', 'width=719,height=625,left=350,top=50,toolbar=yes');">Editar</i>
+			 
+			   			<i class="fas fa-trash-alt delete" onclick="return confirmar('Estas seguro de borrar a este policia?' ,'{% url 'borrar_policia' pk=oficial.pk %}')"></i>
+			    		
 			    	</td>	
 			   	
 			    </tr>

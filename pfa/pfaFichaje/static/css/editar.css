@@ -1,0 +1,43 @@
+.Escudo{
+	float: right;
+}
+
+li.Izquierdo {
+  float: left;
+}
+
+ul.menu {
+  list-style-type: none;
+  text-align: center;
+  text-decoration-color: black;
+  font:bold Helvetica;
+  font-size: 36px;
+  margin: 5px;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #12b0f9;
+}
+
+.centerdiv1{
+ position: absolute;
+ border: solid;
+ border-color: #12B0F9;
+ border-width: 3px;
+ border-radius: 7px;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+ padding: 50px;
+}
+
+.botones{
+  padding: 10px;
+  font-family:Roboto;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000000;
+  background-color: #12B0F9;
+  border-radius: 6px;
+  border: 3px solid #12B0F9;
+}
