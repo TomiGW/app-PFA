@@ -14,6 +14,11 @@ ul.menu {
   grid-template-rows: 100px;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
 li.Izquierdo {
   grid-row-start: 1;
   grid-row-end: 1;

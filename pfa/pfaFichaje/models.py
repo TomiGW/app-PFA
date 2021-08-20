@@ -33,7 +33,7 @@ class Policias(models.Model): #Modelo para los oficiales
 class CargaHorarias(models.Model): # Modelo para cargar las horas
 	policia = models.ForeignKey('Policias', on_delete=models.CASCADE) # Pide un oficial
 	horas_totales= models.TimeField() # Se ingresa las horas totales
-	fecha_Carga= timezone.now()
+	fecha_Carga= models.DateField(default=date.today)
 	dinero_Extra = models.IntegerField(blank=True, default=0) 
 
 	def __str__(self):

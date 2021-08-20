@@ -8,19 +8,28 @@
 
 {% block contenido %}
 		<div class="botonera">
-			<a href="{% url 'borrar_info' %}"> <button class="botones elementos-botonera"> Borrar toda la informacion</button></a>
+			<button class="botones elementos-botonera" onclick="return confirmar('Estas seguro de borrar todas las horas?' ,'{% url 'borrar_info' %}')"> Borrar toda la informacion</button>
 			
-		    <input type="button" value="Ver historial de horas" class="botones elementos-botonera" onclick="javascript:window.open(
-		    	'Historial_Horas',
-		    	'',
-		    	'width=800,height=900,left=350,top=50,toolbar=yes'
-		    );" />
+	    	<button class="botones elementos-botonera" onclick="return abrirVentana( '{%url 'historial' %}', 'width=1000,height=550,left=350,top=50,toolbar=yes');"> Ver historial de horas </button>
 
 		    <input type="button" value="Nueva carga horaria" class="botones elementos-botonera" onclick="javascript:window.open(
 		    	'Informacion/nueva_carga_horaria',
 		    	'',
-		    	'width=300,height=300,left=350,top=50,toolbar=yes'
+		    	'width=719,height=625,left=350,top=50,toolbar=yes'
 		    );" />
+		</div>
+		<div style="float: right;">
+			<div style="font: bold Helvetica; font-size: 24px; width:80%;">
+				<b >Busque las horas de una fecha en particular:</b>
+			</div>
+			<form method="get">
+				<div class="input-group col-md-12">
+					<input type="date" name="fecha" >
+					<span class="input-group-list">
+						<button type="sumbit" class="botones"> Buscar</button>
+					</span>
+				</div>
+			</form>
 		</div>
 	    <!-- BARRA DE BUSQUEDA A IMPLEMENTAR
 	    <div class="container">
@@ -61,7 +70,7 @@
 				    	<td> {{f.2.0}}:{{f.2.1}} </td>
 				    	<td> $ {{f.1}}</td>
 				    	<td>{{f.0.dias_PFA}}</td>
-				    	<td> <a href="{% url 'borrar' pk=f.0.pk %}"> <i class="fas fa-trash-alt delete"></i></a></td>
+				    	<td> <i class="fas fa-trash-alt delete" onclick="return confirmar('Estas seguro de borrar todas las horas de este oficial?' ,'{% url 'borrar' pk=f.0.pk %}')"></i></td>
 				   	
 				    </tr>
 				    {% endfor %}	

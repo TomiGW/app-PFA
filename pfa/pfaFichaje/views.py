@@ -53,7 +53,11 @@ def borrar_policia(request, pk): # Vista para borrar un policia
 
 # VISTAS PARA LAS CARGAS DE HORAS (A/B/M)
 def cargaHoraria(request): # Muestra las horas cargadas TOTALES de cada oficial
-	carga= CargaHorarias.objects.order_by("policia") 
+	queryset = request.GET.get("fecha")
+	if queryset:
+		carga= CargaHorarias.objects.order_by("policia").filter(Q(fecha_Carga__iexact=queryset))
+	else:
+		carga= CargaHorarias.objects.order_by("policia") 
 	# Se crean 3 listas para guardar los datos que se necesitan
 	oficiales=[]
 	montos = []
@@ -100,7 +104,11 @@ def borrar_toda_informacion(request): #Borra todas las cargas de horas que se ha
 	return redirect('informacion')
 
 def historial_horas(request): # Muestra el historial de cargas, en el html solo se muestran las ultimas 15
-	carga= CargaHorarias.objects.all()
+	queryset = request.GET.get("fecha")
+	if queryset:
+		carga= CargaHorarias.objects.order_by("fecha_Carga").filter(Q(fecha_Carga__iexact=queryset))
+	else:
+		carga= CargaHorarias.objects.order_by("fecha_Carga")
 	return render(request, 'pfaHtml/horariosTemplates/ultimas_cargas_horarias.html', {'carga': carga})
 
 def nueva_cargaHoraria(request): # Añade una nueva carga de horas

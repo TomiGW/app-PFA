@@ -5,52 +5,84 @@
 
 	<head>
 		<title> Ultimas cargas horarias </title>
-		<link rel="stylesheet" href="{% static 'css/base.css' %}">
+		<link rel="stylesheet" href="{% static 'css/editar.css' %}">
+		<link rel="stylesheet" href="{% static 'css/horarios-css/base.css' %}"> 
+		
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+		<script type="text/javascript">
+			function abrirVentana(url, config){
+				window.open(
+			    	url,
+			    	'',
+			    	config
+		   		)
+			}
+		</script>
+
+		<script>
+		    window.onunload = refreshParent;
+		    function refreshParent() {
+		        window.opener.location.reload();
+		    }
+		</script>
 	</head>
 
 	<body>
 
-		<script>
-	    window.onunload = refreshParent;
-	    function refreshParent() {
-	        window.opener.location.reload();
-	    }
-		</script>
+		   <ul class="menu">
+            <img class="Escudo" style="width: 123px;height: 116px;" src="/static/imagenes/Escudo_PFA.png">
+            <li class="Izquierdo">Ultimas cargas horarias </li>
+        </ul>
 
+        <div style="float: right;">
+			<div style="font: bold Helvetica; font-size: 24px; width:80%;">
+				<b >Busque las horas de una fecha en particular:</b>
+			</div>
+			<form method="get">
+				<div class="input-group col-md-12">
+					<input type="date" name="fecha" >
+					<span class="input-group-list">
+						<button type="sumbit" class="botones"> Buscar</button>
+					</span>
+				</div>
+			</form>
+		</div>		
+
+		<div>
 		    <table class="tabla_separada" border="2">
 	    	
-	    	<tbody>
-	    		<tr>
-		    		<th> Nombre Apellido </th>
-		    		<th> Rango </th>
-		    		<th> Horas totales </th>
-		    		<th> Monto </th>
-		    		<th> Dias en la PFA </th>
-		    		<th> Modificar </th>
-	    		</tr>
+		    	<tbody>
+		    		<tr>
+			    		<th> Nombre Apellido </th>
+			    		<th> Rango </th>
+			    		<th> Horas totales </th>
+			    		<th> Monto </th>
+			    		<th> Dias en la PFA </th>
+			    		<th> Modificar </th>
+		    		</tr>
 
-			    {% for carga in carga|slice:":25" %}
-			    <tr>
-			    	<td>{{ carga.policia.nombre }} {{ carga.policia.apellido }}</td>
-			    	<td>{{ carga.policia.rango }}</td>
-			    	<td>{{carga.horas_totales}} </td>
-			    	<td> $ {{carga.pagoPorHora}}</td>
-			    	<td> {{carga.policia.dias_PFA}}</td>
-			    	<td>
+				    {% for carga in carga|slice:":25" %}
+				    <tr>
+				    	<td>{{ carga.policia.nombre }} {{ carga.policia.apellido }}</td>
+				    	<td>{{ carga.policia.rango }}</td>
+				    	<td>{{carga.horas_totales}} </td>
+				    	<td> $ {{carga.pagoPorHora}}</td>
+				    	<td> {{carga.policia.dias_PFA}}</td>
+				    	<td>
 
-			    		<a href="{% url 'editar_hora' pk=carga.pk %}">
-			    			<button type="button" class="boton_edit"> Editar </button>
-			    		</a> 
+				    		<i class="fas fa-edit edit" onclick= "return abrirVentana('{%url 'editar_hora' pk=carga.pk %}', 'width=719,height=625,left=350,top=50,toolbar=yes');">Editar</i>
 
-			    		<a href="{% url 'borrar_hora' pk=carga.pk %}">
-			    			<button type="button-borrar" class="boton_delete" > Borrar </button>
-			    		</a> 
-			    	</td>
-			    </tr>
-			       
-			    {% endfor %}
-	    	</tbody>
-	    </table>
+				    		<a href="{% url 'borrar_hora' pk=carga.pk %}">
+				    			<i class="fas fa-trash-alt delete"></i>
+				    		</a> 
+				    	</td>
+				    </tr>
+				       
+				    {% endfor %}
+		    	</tbody>
+	    	</table>
+	    </div>
 
 	</body>
 </html>
